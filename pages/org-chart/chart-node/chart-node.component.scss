@@ -1,0 +1,72 @@
+  .chart-node {
+    $node-width: 120px;
+
+    .photo {
+      $size: 56px;
+      padding: 4px;
+      width: $size;
+      height: $size;
+      border-radius: 200px;
+
+      border: 1px solid lightgrey;
+    }
+    .profile {
+      padding: 4px 8px;
+      // width: 100px;
+      // overflow: hidden;
+    }
+
+    .tool {
+      button {
+        $size: 32px;
+        width: $size;
+        height: $size;
+        border-color: lightgrey !important;
+        color: #666;
+      }
+    }
+
+    // decorator
+    $line: 1px solid #aaa;
+    .line {
+      border-right: $line;
+    }
+    .top-line {
+      height: 16px;
+    }
+    .children {
+      .child:not(:first-child):not(:last-child) {
+        border-top: $line;
+      }
+      .child:first-child:not(:last-child) {
+        position: relative;
+        &::before {
+          content: "";
+          position: absolute;
+          border-top: $line;
+          left: 50%;
+          width: 50%;
+        }
+      }
+      .child:last-child:not(:first-child) {
+        position: relative;
+        &::before {
+          content: "";
+          position: absolute;
+          border-top: $line;
+          right: 50%;
+          width: 50%;
+        }
+      }
+    }
+
+    // responsive mobile
+    &.mobile {
+      width: $node-width;
+      
+      .children {
+        width: 300%;
+        overflow-x: auto;
+      }
+    }
+  }

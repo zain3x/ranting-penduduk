@@ -1,0 +1,36 @@
+<div class="chart-node" [ngClass]="{'mobile': isMobile}" fxLayout="column" fxLayoutAlign=" center">
+
+	<div class="top-line line"></div>
+
+	<img class="photo" alt="photo" src="{{employee?.picture.thumbnail}}">
+	<div class="profile" fxLayout="column" fxLayoutAlign=" center">
+		<div>{{employee?.name.first.concat(' ', employee?.name.last)}}</div>
+		<div>{{employee?.email}}</div>
+	</div>
+
+
+	<div class="tool" fxLayout="row">
+		<button ion-button outline icon-only round disabled>
+      <ion-icon name="swap"></ion-icon>
+    </button>
+
+		<button ion-button outline icon-only round (click)="addChild()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+
+		<div [hidden]="!showChild || children.length <= 0" class="bottom-line line"></div>
+
+		<button ion-button outline icon-only round (click)="removeChild()">
+      <ion-icon name="remove"></ion-icon>
+    </button>
+
+		<button ion-button outline icon-only round (click)="toggleChild()" *ngIf="children.length > 0">
+       <ion-icon name="eye"></ion-icon>
+    </button>
+	</div>
+
+	<!-- children -->
+	<div class="children" fxLayout="row" [hidden]="!showChild">
+		<gdx-chart-node *ngFor="let child of children" class="child" [isMobile]="isMobile"></gdx-chart-node>
+	</div>
+</div>
